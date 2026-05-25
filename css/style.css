@@ -797,198 +797,7 @@ a {
   line-height: 1.5;
 }
 
-/* Dynamic Bottom Music Player Controller */
-.player-controller-bar {
-  position: fixed;
-  bottom: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(960px, 94vw);
-  background: rgba(10, 10, 12, 0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 46, 0, 0.2);
-  border-radius: 20px;
-  padding: 0.8rem 1.5rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
-              0 0 30px rgba(255, 46, 0, 0.15);
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
 
-.player-controller-bar.visible {
-  bottom: 24px;
-}
-
-.player-main-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-
-.player-song-info {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  min-width: 0;
-  width: 30%;
-}
-
-.player-disk {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #111;
-  border: 1px solid #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.player-disk::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.player-disk.spinning {
-  animation: spin 3s linear infinite;
-}
-
-.player-titles {
-  min-width: 0;
-}
-
-.player-title {
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.player-genre {
-  color: var(--accent-2);
-  font-size: 0.72rem;
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.player-controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.player-play-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #fff;
-  border: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(255,255,255,0.25);
-  transition: all 0.2s ease;
-}
-
-.player-play-btn:hover {
-  transform: scale(1.05);
-}
-
-.player-play-btn svg {
-  width: 20px;
-  height: 20px;
-  fill: #000;
-  color: #000;
-}
-
-.player-progress-area {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  width: 45%;
-}
-
-.player-time {
-  font-family: monospace;
-  font-size: 0.78rem;
-  color: var(--muted);
-  width: 32px;
-  flex-shrink: 0;
-  text-align: center;
-}
-
-.player-progress-bar {
-  flex: 1;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 99px;
-  cursor: pointer;
-  position: relative;
-}
-
-.player-progress-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  border-radius: 99px;
-  position: relative;
-}
-
-.player-progress-handle {
-  position: absolute;
-  top: 50%;
-  right: -5px;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 8px rgba(255,46,0,0.5);
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.player-progress-bar:hover .player-progress-handle {
-  opacity: 1;
-}
-
-.player-volume-area {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  width: 15%;
-  justify-content: flex-end;
-}
-
-.player-volume-slider {
-  width: 60px;
-  height: 4px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 99px;
-  cursor: pointer;
-  position: relative;
-}
-
-.player-volume-fill {
-  height: 100%;
-  width: 75%;
-  background: #fff;
-  border-radius: 99px;
-}
 
 /* Footer Section */
 .footer {
@@ -1098,20 +907,7 @@ a {
     padding: 0.8rem 0;
     gap: 0.5rem;
   }
-  .player-controller-bar {
-    width: 96vw;
-    padding: 0.8rem;
-  }
-  .player-progress-area {
-    display: none; /* Hide progress bar on mobile layout to save space */
-  }
-  .player-song-info {
-    width: 60%;
-  }
-  .player-controls {
-    width: 40%;
-    justify-content: flex-end;
-  }
+
 }
 
 /* Orb 3 - Red-Orange Glow */
@@ -1400,4 +1196,276 @@ a {
   .player-visualizer-container {
     display: none;
   }
+}
+
+/* ==========================================
+   MOBILE MENU & RESPONSIVE UX POLISHING
+   ========================================== */
+
+/* Mobile Hamburger Trigger */
+.mobile-menu-trigger {
+  display: none;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+}
+
+.mobile-menu-trigger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+}
+
+.mobile-menu-trigger span::before,
+.mobile-menu-trigger span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-trigger span::before {
+  transform: translateY(-6px);
+}
+
+.mobile-menu-trigger span::after {
+  transform: translateY(6px);
+}
+
+/* Trigger Open State */
+.mobile-menu-trigger.is-active span {
+  background: transparent;
+}
+
+.mobile-menu-trigger.is-active span::before {
+  transform: rotate(45deg) translateY(0);
+}
+
+.mobile-menu-trigger.is-active span::after {
+  transform: rotate(-45deg) translateY(0);
+}
+
+/* Mobile Screen Specific overrides */
+@media (max-width: 768px) {
+  .topbar-row {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 1.2rem !important;
+    gap: 0 !important;
+    min-height: 76px !important;
+  }
+  
+  .nav {
+    display: none !important;
+  }
+  
+  .topbar-row > div:last-child {
+    display: none !important;
+  }
+  
+  .mobile-menu-trigger {
+    display: inline-flex !important;
+  }
+
+  /* Adjust typography for cleaner mobile flow */
+  .gradient-title {
+    font-size: clamp(2.2rem, 8vw, 3.5rem) !important;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  
+  .hero p {
+    font-size: 1rem !important;
+    padding: 0 0.5rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .chip-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 0 1rem;
+  }
+
+  /* Fix grid gaps and spacing */
+  .section {
+    padding: 3.5rem 0 !important;
+  }
+}
+
+/* Fullscreen Glassmorphic Mobile Overlay Menu */
+.mobile-overlay-menu {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 0, 0, 0.96);
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6.5rem 2rem 3.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+  box-shadow: inset 0 0 120px rgba(255, 46, 0, 0.12);
+  overflow-y: auto;
+}
+
+.mobile-overlay-menu.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menu Brand Header */
+.mobile-menu-header {
+  text-align: center;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 0.5s ease 0.1s;
+}
+
+.mobile-overlay-menu.is-active .mobile-menu-header {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-menu-logo {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 46, 0, 0.25);
+  box-shadow: 0 0 20px rgba(255, 46, 0, 0.25);
+  margin-bottom: 0.8rem;
+}
+
+.mobile-menu-brand-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+
+/* Menu Navigation Links List */
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.mobile-menu-link {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.9) translateY(15px);
+  opacity: 0;
+}
+
+.mobile-overlay-menu.is-active .mobile-menu-link {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Staggered load transitions */
+.mobile-menu-link:nth-child(1) { transition-delay: 0.15s; }
+.mobile-menu-link:nth-child(2) { transition-delay: 0.2s; }
+.mobile-menu-link:nth-child(3) { transition-delay: 0.25s; }
+.mobile-menu-link:nth-child(4) { transition-delay: 0.3s; }
+.mobile-menu-link:nth-child(5) { transition-delay: 0.35s; }
+.mobile-menu-link:nth-child(6) { transition-delay: 0.4s; }
+
+.mobile-menu-link:hover,
+.mobile-menu-link.is-active {
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 46, 0, 0.5);
+  transform: scale(1.05) !important;
+}
+
+.mobile-menu-link::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.mobile-menu-link:hover::before,
+.mobile-menu-link.is-active::before {
+  width: 25px;
+}
+
+/* Footer Section of Menu */
+.mobile-menu-footer {
+  text-align: center;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, opacity 0.5s ease 0.45s;
+}
+
+.mobile-overlay-menu.is-active .mobile-menu-footer {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-menu-footer .btn {
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(255, 46, 0, 0.25);
+  border: 1px solid rgba(255, 46, 0, 0.4);
+}
+
+.mobile-menu-copyright {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.05em;
+}
+
+/* Prevent scrolling when menu is active */
+body.mobile-menu-open {
+  overflow: hidden !important;
+  height: 100vh !important;
 }
