@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUX STUDIO | Local AI Music Masterpiece</title>
+  <meta
+    name="description"
+    content="LUX STUDIO is a local-first AI music workstation for generation, stem separation, voice cloning, piano-roll editing, and mastering."
+  />
+  <link rel="icon" type="image/png" href="images/Lux Studio icon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-noise"></div>
+  
+  <div class="page">
+    <!-- Premium Cyber Background Orbs -->
+    <div class="bg-layer">
+      <img class="bg-image" src="images/landing-background.png" alt="" />
+      <div class="bg-overlay"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-overlay"></div>
+      <div class="particles"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="topbar">
+      <div class="container topbar-row">
+        <a class="brand" href="index.html">
+          <img src="images/Lux Studio icon.png" alt="LUX STUDIO" />
+          <span>LUX STUDIO</span>
+        </a>
+        <nav class="nav">
+          <a class="active" href="index.html">Home</a>
+          <a href="features.html">Features</a>
+          <a href="about.html">About</a>
+          <a href="features/generation.html">Generator</a>
+          <a href="features/editor.html">Editor</a>
+          <a href="features/cloner.html">Voice Cloner</a>
+        </nav>
+        <div>
+          <a class="btn btn-primary" href="features.html">Explore Platform</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Center-Staggered Asymmetric Hero -->
+      <section class="hero">
+        <div class="container">
+          <div style="text-align: center; margin-bottom: 3.5rem;">
+            <div class="eyebrow" style="animation: pulse-slow 3s ease-in-out infinite;">Local-First AI Workstation</div>
+            <h1 class="gradient-title" style="max-width: 22ch; margin: 0 auto;">
+              Create premium AI music with the same cinematic identity as Lux Studio.
+            </h1>
+            <p style="max-width: 68ch; margin: 1.5rem auto 0; font-size: 1.15rem;">
+              LUX STUDIO fuses ACE-step generation, a real piano-roll workflow, Demucs stem demixing,
+              voice cloning, repainting, and AI mastering in one local production surface. Your files stay local,
+              your workflow stays fast, and your sound quality stays release-ready.
+            </p>
+            <div class="hero-actions" style="justify-content: center;">
+              <a class="btn btn-primary" href="features.html">See all features</a>
+              <a class="btn btn-ghost" href="about.html">Read the deep story</a>
+            </div>
+            <div class="chip-row" style="justify-content: center;">
+              <span class="chip">100% Privacy-first</span>
+              <span class="chip">GPU accelerated</span>
+              <span class="chip">Mac / CUDA / AMD / Intel</span>
+            </div>
+          </div>
+
+          <!-- Hero Visual Grid -->
+          <div class="hero-visual" style="max-width: 1000px; margin: 0 auto;">
+            <img src="images/Banner with Logo.png" alt="LUX STUDIO interface" />
+            <div class="hero-bars"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Generator Playground Section (ASYNCHRONOUS TENSION / DOUBLE DECK) -->
+      <section class="section" style="background: rgba(0,0,0,0.25); border-y: 1px solid var(--line); position: relative; z-index: 10;">
+        <div class="container">
+          <div style="text-align: center; margin-bottom: 2.5rem;">
+            <div class="kicker">Live Interactive Preview</div>
+            <h2>Tactile Music Generation Playground</h2>
+            <p class="lead" style="margin: 0.5rem auto 0;">Type a musical prompt, click generate, and witness the local synthesis engine weave customized acoustic waveforms in real time right in your browser!</p>
+          </div>
+
+          <div class="showcase-layout">
+            <!-- Left Deck: Generator Prompter & Track Cards -->
+            <div class="generator-box">
+              <div class="widget-header">
+                <div class="widget-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent" style="color: var(--accent);"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                  <span>ACE-Step Generator</span>
+                </div>
+                <span class="widget-tag">v1.5 Local</span>
+              </div>
+
+              <!-- Prompt Input Bar -->
+              <div class="prompt-input-row">
+                <input 
+                  type="text" 
+                  id="prompt-input" 
+                  class="prompt-input" 
+                  placeholder="e.g. Energetic retro synthwave lead with punchy analog bass..."
+                  value="Energetic retro synthwave lead with punchy analog bass..."
+                />
+                <button id="generate-btn" class="prompt-btn">
+                  <span>Generate</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+              </div>
+
+              <!-- Generation Progression -->
+              <div id="progression-container" class="progression-bar-container">
+                <div class="progression-info">
+                  <span id="progression-status" class="progression-status">Analyzing lyrics cadence...</span>
+                  <span id="progression-percent" class="progression-percent">0%</span>
+                </div>
+                <div class="progression-track">
+                  <div id="progression-fill" class="progression-fill"></div>
+                </div>
+              </div>
+
+              <!-- Sound Card Triggers -->
+              <div class="tracks-grid">
+                <!-- Track 1 -->
+                <div class="track-card" data-track="retro">
+                  <div class="record-art-container">
+                    <div class="record-vinyl">
+                      <div class="record-center">
+                        <div class="record-hole"></div>
+                      </div>
+                      <div class="track-play-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="track-details">
+                    <h5 class="track-title">Cybernetic Horizon</h5>
+                    <span class="track-genre">Retro Synth Wave</span>
+                  </div>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="track-card" data-track="lofi">
+                  <div class="record-art-container">
+                    <div class="record-vinyl">
+                      <div class="record-center">
+                        <div class="record-hole"></div>
+                      </div>
+                      <div class="track-play-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="track-details">
+                    <h5 class="track-title">Rainy Studio Chords</h5>
+                    <span class="track-genre">Warm Lofi Rhodes</span>
+                  </div>
+                </div>
+
+                <!-- Track 3 -->
+                <div class="track-card" data-track="ambient">
+                  <div class="record-art-container">
+                    <div class="record-vinyl">
+                      <div class="record-center">
+                        <div class="record-hole"></div>
+                      </div>
+                      <div class="track-play-overlay">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="track-details">
+                    <h5 class="track-title">Stellar Drift</h5>
+                    <span class="track-genre">Ambient Pad Voyage</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Deck: Real-time Lyric Scroller -->
+            <div class="glass-card lyrics-card">
+              <div id="lyrics-title" class="lyrics-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent" style="color: var(--accent-2);"><path d="M12 2A10 10 0 0 0 2 12v1a4 4 0 0 0 4 4h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3.9A8 8 0 0 1 12 4a8 8 0 0 1 8 8h-2.1a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a4 4 0 0 0 4-4v-1A10 10 0 0 0 12 2Z"/></svg>
+                <span>Lyrics Syllable Binding</span>
+              </div>
+              <div id="lyrics-scroller" class="lyrics-scroller">
+                <div style="text-align: center; color: var(--muted); padding-top: 5rem; font-size: 0.95rem;">
+                  Select a generated track on the left to begin real-time synthesized playback and lyric visualizer scroll tracking.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Masterpiece Platform Grid -->
+      <section class="section">
+        <div class="container">
+          <h2>What makes this a masterpiece platform</h2>
+          <p class="lead">
+            We built the product around complete signal-chain control: generation, arrangement, timbre shaping,
+            vocal identity, stem-aware correction, and mastering consistency. You are not using scattered tools;
+            you are scoring through a coherent audio architecture.
+          </p>
+          <div class="quality-grid">
+            <article class="quality-stat">
+              <strong>64-step high-fidelity generation</strong>
+              <p>XL-SFT style generation with ADG guidance and DCW correction for more stable harmonics and cleaner transients.</p>
+            </article>
+            <article class="quality-stat">
+              <strong>Mastering with intent</strong>
+              <p>AI Master targets practical release profiles: Streaming, Loud, Dynamic, Vocal focus, R&amp;B/Soul, and Hip Hop.</p>
+            </article>
+            <article class="quality-stat">
+              <strong>DAW-grade editing behavior</strong>
+              <p>Absolute quantization, lyric-syllable binding, ghost-track visibility, and MIDI round-trip to keep musical structure precise.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Creator Studio Gallery Section -->
+      <section class="creator-gallery-section">
+        <div class="container">
+          <div class="kicker">Creators in Action</div>
+          <h2>Designed for Real Music Makers</h2>
+          <p class="lead" style="max-width: 74ch;">
+            Witness how musicians, engineers, and producers leverage local AI intelligence to compose original tracks, shape dynamic mixes, and clone signature vocals with catalog-level consistency.
+          </p>
+
+          <div class="creator-grid">
+            <!-- Left Card: Synth Producer -->
+            <div class="creator-left">
+              <div class="gallery-card card-synth">
+                <img src="images/creator_synth.png" alt="Synth music producer tweaking modular gear" />
+                <div class="gallery-caption">
+                  <span class="gallery-badge">Local Compositions</span>
+                  <h4>Analogue Synthesis &amp; Control</h4>
+                  <p>Fine-tune model parameters and generate custom acoustic waveforms without reliance on cloud server limits.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column Cards -->
+            <div class="creator-right">
+              <!-- Top Card: Vocal Booth Recording -->
+              <div class="gallery-card card-vocals">
+                <img src="images/creator_vocals.png" alt="Vocal artist in recording booth with glowing outline" />
+                <div class="gallery-caption">
+                  <span class="gallery-badge">LoRA Voice Cloner</span>
+                  <h4>Vocal Identity &amp; Dubbing</h4>
+                  <p>Inject pristine dry references and fine-tune voice identity to maintain custom timbre consistency.</p>
+                </div>
+              </div>
+
+              <!-- Bottom Card: Console Mixing Engineer -->
+              <div class="gallery-card card-mixing">
+                <img src="images/creator_mixing.png" alt="Audio engineer mixing multi-track console" />
+                <div class="gallery-caption">
+                  <span class="gallery-badge">DAW-grade Control</span>
+                  <h4>Console Mastering &amp; Mix Repair</h4>
+                  <p>Balance, edit, isolate stems, and master tracks against competitive loudness curves directly in one timeline.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigate by Production Stage Features Map -->
+      <section class="section" style="margin-bottom: 2.5rem;">
+        <div class="container">
+          <h2>Navigate by production stage</h2>
+          <div class="path-grid">
+            <a class="path-card" href="features/generation.html">
+              <h4>Generate</h4>
+              <p>Prompt, lyrics, engine routing, and continuation.</p>
+            </a>
+            <a class="path-card" href="features/editor.html">
+              <h4>Edit</h4>
+              <p>Song editor, piano roll, repaint regions, and layering.</p>
+            </a>
+            <a class="path-card" href="features/separation.html">
+              <h4>Separate</h4>
+              <p>Vocal, drums, bass, and instrumental stem extraction.</p>
+            </a>
+            <a class="path-card" href="features/cloner.html">
+              <h4>Clone</h4>
+              <p>Fine-tune voice identity from clean vocal references.</p>
+            </a>
+            <a class="path-card" href="features/mastering.html">
+              <h4>Master</h4>
+              <p>Balance loudness, dynamics, and translation for release.</p>
+            </a>
+            <a class="path-card" href="about.html">
+              <h4>System design</h4>
+              <p>Read the architecture and quality philosophy in depth.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Floating Music Controller Bar -->
+    <div id="player-bar" class="player-controller-bar">
+      <div class="player-main-row">
+        <!-- Song Details -->
+        <div class="player-song-info">
+          <div id="player-disk" class="player-disk"></div>
+          <div class="player-titles">
+            <h6 id="player-title" class="player-title">Cybernetic Horizon</h6>
+            <span id="player-genre" class="player-genre">Retro Synth Wave</span>
+          </div>
+        </div>
+
+        <!-- Center Controls -->
+        <div class="player-controls">
+          <button id="player-play-btn" class="player-play-btn" aria-label="Play or Pause">
+            <!-- Play icon -->
+            <svg id="player-play-icon" viewBox="0 0 24 24" style="display: none;"><path d="M8 5v14l11-7z"/></svg>
+            <!-- Pause icon -->
+            <svg id="player-pause-icon" viewBox="0 0 24 24" style="display: block;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+        </div>
+
+        <!-- Progress Timeline -->
+        <div class="player-progress-area">
+          <span id="player-current-time" class="player-time">0:00</span>
+          <div id="player-progress-bar" class="player-progress-bar">
+            <div id="player-progress-fill" class="player-progress-fill">
+              <div class="player-progress-handle"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Volume Area -->
+        <div class="player-volume-area">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400" style="color: var(--muted);"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <div class="player-volume-slider">
+            <div class="player-volume-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Application Footer -->
+    <footer class="footer">
+      <div class="container footer-row">
+        <span>Developed by Lux Automaton · LUX STUDIO</span>
+        <div class="footer-links">
+          <a href="features.html">Features</a>
+          <a href="about.html">About</a>
+          <a href="../README.md">Docs</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUX STUDIO | Piano Roll Song Editor</title>
+  <meta
+    name="description"
+    content="Details on the LUX STUDIO Song Editor and Piano Roll, featuring ghost tracks, strict quantization, MIDI support, and lyric mapping."
+  />
+  <link rel="icon" type="image/png" href="../images/Lux Studio icon.png" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="bg-noise"></div>
+  
+  <div class="page">
+    <!-- Premium Background Layers -->
+    <div class="bg-layer">
+      <img class="bg-image" src="../images/landing-background.png" alt="" />
+      <div class="bg-overlay"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-overlay"></div>
+      <div class="particles"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="topbar">
+      <div class="container topbar-row">
+        <a class="brand" href="../index.html">
+          <img src="../images/Lux Studio icon.png" alt="LUX STUDIO" />
+          <span>LUX STUDIO</span>
+        </a>
+        <nav class="nav">
+          <a href="../index.html">Home</a>
+          <a href="../features.html">Features</a>
+          <a href="../about.html">About</a>
+          <a href="generation.html">Generator</a>
+          <a class="active" href="editor.html">Editor</a>
+          <a href="cloner.html">Voice Cloner</a>
+        </nav>
+        <div>
+          <a class="btn btn-primary" href="../features.html">Explore Platform</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="feature-hero">
+      <section class="section">
+        <div class="container">
+          <div class="kicker">Feature Details</div>
+          <h2>Song Editor and Piano Roll</h2>
+          <p class="lead" style="max-width: 74ch;">
+            Lux Studio treats editing as a core stage, not an afterthought. You can place notes, bind syllables, align harmonic layers, and refine timing with deterministic behavior.
+          </p>
+          
+          <div class="feature-details-layout" style="margin-top: 3rem;">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <article class="glass-card" style="margin-bottom: 0;">
+                <h3 style="font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem;">Ghost-track harmonic alignment</h3>
+                <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5;">
+                  When one track is active, related tracks appear as translucent guides. This makes harmony writing and call-response phrasing precise across sections.
+                </p>
+              </article>
+
+              <article class="glass-card" style="margin-bottom: 0;">
+                <h3 style="font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem;">Strict quantization ladder</h3>
+                <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5;">
+                  Snap options from 1/8 down to fine increments keep timing controlled. You can move quickly without introducing hidden timing drift.
+                </p>
+              </article>
+
+              <article class="glass-card" style="margin-bottom: 0;">
+                <h3 style="font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem;">Lyric syllable mapping</h3>
+                <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5;">
+                  Double-click per-note lyric entry plus bulk lyric binding helps keep diction in rhythm, so vocal phrasing sounds intentional instead of mashed.
+                </p>
+              </article>
+
+              <article class="glass-card" style="margin-bottom: 0;">
+                <h3 style="font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem;">MIDI round-trip</h3>
+                <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.5;">
+                  Import external sketch ideas and export arrangements back to your DAW. This bridges AI ideation and traditional production workflows.
+                </p>
+              </article>
+            </div>
+            
+            <div class="details-graphic-wrapper">
+              <img src="../images/creator_editor.png" alt="LUX STUDIO Producer editing piano rolls and notes on monitor" class="details-graphic-img" style="height: 640px;" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Floating Music Controller Bar -->
+    <div id="player-bar" class="player-controller-bar">
+      <div class="player-main-row">
+        <!-- Song Details -->
+        <div class="player-song-info">
+          <div id="player-disk" class="player-disk"></div>
+          <div class="player-titles">
+            <h6 id="player-title" class="player-title">Cybernetic Horizon</h6>
+            <span id="player-genre" class="player-genre">Retro Synth Wave</span>
+          </div>
+        </div>
+
+        <!-- Center Controls -->
+        <div class="player-controls">
+          <button id="player-play-btn" class="player-play-btn" aria-label="Play or Pause">
+            <svg id="player-play-icon" viewBox="0 0 24 24" style="display: none;"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="player-pause-icon" viewBox="0 0 24 24" style="display: block;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+        </div>
+
+        <!-- Progress Timeline -->
+        <div class="player-progress-area">
+          <span id="player-current-time" class="player-time">0:00</span>
+          <div id="player-progress-bar" class="player-progress-bar">
+            <div id="player-progress-fill" class="player-progress-fill">
+              <div class="player-progress-handle"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Volume Area -->
+        <div class="player-volume-area">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400" style="color: var(--muted);"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <div class="player-volume-slider">
+            <div class="player-volume-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Application Footer -->
+    <footer class="footer">
+      <div class="container footer-row">
+        <span>Developed by Lux Automaton · LUX STUDIO</span>
+        <div class="footer-links">
+          <a href="../features.html">Features</a>
+          <a href="../about.html">About</a>
+          <a href="../../README.md">Docs</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>
