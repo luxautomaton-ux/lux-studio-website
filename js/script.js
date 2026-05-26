@@ -211,21 +211,35 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Fullscreen Toggle
+    // Fullscreen Toggle with WebKit/iOS support
     const toggleFullscreen = () => {
-      if (!document.fullscreenElement) {
+      const isFullscreen = document.fullscreenElement || 
+                           document.webkitFullscreenElement || 
+                           document.mozFullScreenElement || 
+                           document.msFullscreenElement;
+
+      if (!isFullscreen) {
         if (container.requestFullscreen) {
           container.requestFullscreen();
-        } else if (container.mozRequestFullScreen) { // Firefox
-          container.mozRequestFullScreen();
-        } else if (container.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        } else if (container.webkitRequestFullscreen) {
           container.webkitRequestFullscreen();
-        } else if (container.msRequestFullscreen) { // IE/Edge
+        } else if (container.mozRequestFullScreen) {
+          container.mozRequestFullScreen();
+        } else if (container.msRequestFullscreen) {
           container.msRequestFullscreen();
+        } else if (video.webkitEnterFullscreen) {
+          // Fallback for iOS Safari on iPhone
+          video.webkitEnterFullscreen();
         }
       } else {
         if (document.exitFullscreen) {
           document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
         }
       }
     };
@@ -233,6 +247,56 @@ document.addEventListener("DOMContentLoaded", () => {
     if (fullscreenBtn) {
       fullscreenBtn.addEventListener("click", toggleFullscreen);
     }
+
+    // Auto Fullscreen on Mobile Landscape Rotation
+    const handleOrientationChange = () => {
+      // Only execute on mobile / tablet screens
+      const isMobile = window.matchMedia("(max-width: 991px)").matches;
+      if (!isMobile) return;
+
+      const isLandscape = screen.orientation ? 
+        screen.orientation.type.includes("landscape") : 
+        (window.innerWidth > window.innerHeight);
+
+      const isFullscreen = document.fullscreenElement || 
+                           document.webkitFullscreenElement || 
+                           document.mozFullScreenElement || 
+                           document.msFullscreenElement;
+
+      if (isLandscape) {
+        if (!isFullscreen) {
+          if (container.requestFullscreen) {
+            container.requestFullscreen().catch(err => console.log("Orientation fullscreen error:", err));
+          } else if (container.webkitRequestFullscreen) {
+            container.webkitRequestFullscreen().catch(err => console.log("Orientation fullscreen error:", err));
+          } else if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen();
+          }
+        }
+      } else {
+        // Exit fullscreen if we are currently fullscreen
+        if (isFullscreen) {
+          const isPlayerFullscreen = document.fullscreenElement === container || 
+                                     document.webkitFullscreenElement === container ||
+                                     document.mozFullScreenElement === container ||
+                                     document.msFullscreenElement === container;
+          if (isPlayerFullscreen) {
+            if (document.exitFullscreen) {
+              document.exitFullscreen().catch(err => console.log("Orientation exit fullscreen error:", err));
+            } else if (document.webkitExitFullscreen) {
+              document.webkitExitFullscreen().catch(err => console.log("Orientation exit fullscreen error:", err));
+            }
+          }
+        }
+      }
+    };
+
+    if (screen.orientation) {
+      screen.orientation.addEventListener("change", handleOrientationChange);
+    } else {
+      window.addEventListener("resize", handleOrientationChange);
+    }
+
 
     // Auto-hide controls overlay while video is playing
     const showControlsTemporarily = () => {
